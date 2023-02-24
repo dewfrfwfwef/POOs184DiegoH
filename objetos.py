@@ -10,7 +10,7 @@ recargaH = int(input("cuantas balas recarga el heroe: "))
 
 print("")
 print("####### datos villano #")
-especieV = input("escribe la especie del villanp: ")
+especieV = input("escribe la especie del villano: ")
 nombreV = input("escribe el nombre del villano: ")
 alturaV = float(input("escribe la altura del villano: "))
 recargaV = int(input("cuantas balas recarga el villano: "))
@@ -22,24 +22,30 @@ villano= personaje(especieV,nombreV,alturaV)
 
 #3. usar atributos
 
+#ejemplo set para un atributo
+heroe.setNombre(" Pepe pecas ")
+
 print("")
 print("####### objeto heroe #")
-print ("el personaje se llama: " + heroe.nombre)
-print ("su especie es: " + heroe.especie)
-print ("y su altura es de: " + str(heroe.altura))
+print ("el personaje se llama: " + heroe.getNombre())
+print ("su especie es: " + heroe.getEspecie())
+print ("y su altura es de: " + str(heroe.getAltura()))
 
 heroe.correr(True)
 heroe.lanzarGranadas()
-heroe.reload(87)
+heroe.reload(30)
+
+#ejemplo metodo priv
+#heroe.__pensar()
 
 print("")
 print("####### objeto villano #")
-print ("el personaje se llama: " + villano.nombre)
-print ("su especie es: " + villano.especie)
-print ("y su altura es de: " + str(villano.altura))
+print ("el personaje se llama: " + villano.getNombre())
+print ("su especie es: " + villano.getEspecie())
+print ("y su altura es de: " + str(villano.getAltura()))
 
-villano.correr(True)
+villano.correr(False)
 villano.lanzarGranadas()
-villano.reload(87)
+villano.reload(64)
 
 
