@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 from ControlExam2 import *
 
 
@@ -19,6 +20,7 @@ txtinicio.place(x=260,y=20)
 txtinicio= Label(seccion1,text="ingrese nombre:",bg="#BB8FCE")
 txtinicio.configure(font=("calibri", 13))
 txtinicio.place(x=100,y=80)
+
 
 name= Entry(seccion1, bg="#F3F3F3")
 name.place(x=225, y=83)
@@ -50,8 +52,22 @@ txtinicio.place(x=100,y=240)
 
 carrera= Entry(seccion1, bg="#F3F3F3")
 carrera.place(x=220, y=243)
+
+
+nombre = str(name.get())
+apellidoP = str(lastPa.get())
+apellidom = lastMA.get()
+año = nace.get()
+carr = carrera.get()
+
+main = exam(nombre,apellidoP,apellidom,año,carr)
+
+def intname():
+    main.nombre()
+
+
 #3. agregamos los botones
-btonloG= Button(seccion1,text="ingresar",fg="white",bg="#4A235A")
+btonloG= Button(seccion1,text="ingresar",fg="white",bg="#4A235A",command=intname)
 btonloG.place(x=420,y=80)
 
 btonloG= Button(seccion1,text="ingresar",fg="white",bg="#4A235A")
@@ -68,20 +84,5 @@ btonloG.place(x=420,y=240)
 
 btonloG= Button(seccion1,text="prueba",fg="white",bg="#4A235A")
 btonloG.place(x=420,y=240)
-
-
-nombre = name.get()
-apellidoP = lastPa.get()
-apellidom = lastMA.get()
-año = nace.get()
-carr = carrera.get()
-
-main = exam(nombre,apellidoP,apellidom,año,carr)
-
-
-
-
-
-
 
 ventana.mainloop()

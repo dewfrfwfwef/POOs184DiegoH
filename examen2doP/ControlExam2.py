@@ -8,6 +8,5 @@ class exam:
         self.año = año
         self.carrera = carrera
         
-    def nombre(self,nombre):
-        self.name = nombre
-        print (self.name)
+    def nombre(self):
+        print(self.name)
