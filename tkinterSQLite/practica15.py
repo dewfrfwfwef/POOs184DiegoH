@@ -20,13 +20,13 @@ def ejecutaSelectU():
         cadena= str(usu[0])+" " + usu[1]+" " + usu[2]+" " + str(usu[3])
     
     if(rsUsuario):
+        textBus.insert(tk.INSERT, cadena)
         print(cadena)
     else:
         messagebox.showinfo("no encontrado","Usuario no registrado en BD")
         
     return cadena
-            
-
+                
 
 ventana = Tk()
 ventana.geometry("500x300")
@@ -64,10 +64,16 @@ lblid= Label(blink2,text="identificador de usuario:").pack()
 txtid= Entry(blink2,textvariable=varBus).pack()
 btnBuscar= Button(blink2,text="Buscar",command=ejecutaSelectU).pack()
 
-subBus= Label(blink2,text="Registro Usuarios",fg="blue",font=("Modern",15)).pack()
-textBus= tk.Text(blink2,height=2,width=52).pack()
 
+  
  
+subBus= Label(blink2,text="Registro Usuarios",fg="blue",font=("Modern",15)).pack()
+textBus= tk.Text(blink2,height=2,width=52)
+
+
+
+textBus.pack()
+
 
 #pestaña3: Formulario
 #pestaña4: Formulario
