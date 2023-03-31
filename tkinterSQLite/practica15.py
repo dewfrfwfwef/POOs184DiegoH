@@ -26,6 +26,17 @@ def ejecutaSelectU():
         messagebox.showinfo("no encontrado","Usuario no registrado en BD")
         
     return cadena
+
+#Proseder a mostrar tabla de registros
+def MostrarUsus():
+    usus= controlador.consulALL()
+
+    for u in tree.get_children():
+        tree.delete(u)
+        
+    for usu in usus:
+        tree.insert("",END, values=(usu[0],usu[1],usu[2],usu[3]))
+    
                 
 
 ventana = Tk()
@@ -63,23 +74,28 @@ varBus= tk.StringVar()
 lblid= Label(blink2,text="identificador de usuario:").pack()
 txtid= Entry(blink2,textvariable=varBus).pack()
 btnBuscar= Button(blink2,text="Buscar",command=ejecutaSelectU).pack()
-
-
-  
  
 subBus= Label(blink2,text="Registro Usuarios",fg="blue",font=("Modern",15)).pack()
 textBus= tk.Text(blink2,height=2,width=52)
-
-
-
 textBus.pack()
 
-
 #pestaña3: Formulario
+titulo3= Label(blink3,text="Consultar Usuarios",fg="green",font=("Modern",18)).pack()
+
+colum= ('id','nombre','correo','contraseña')
+
+tree= ttk.Treeview(blink3, columns=colum,show='headings')
+
+tree.heading('id',text='id')
+tree.heading('nombre',text='nombre')
+tree.heading('correo',text='correo')
+tree.heading('contraseña',text='contraseña')
+tree.pack(fill="both")
+
+btnShow= Button(blink3, text="Mostrar",command=MostrarUsus)
+btnShow.pack()
+
 #pestaña4: Formulario
-
-
-
 
 
 panel.add(blink1,text="formulario de usuarios")

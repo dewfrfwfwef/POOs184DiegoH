@@ -72,3 +72,21 @@ class controladorBD:
             
             except sqlite3.OperationalError:
                 print("error Consulta")
+                
+    def consulALL(self):
+        conx= self.conexionBD()
+    
+        try:
+                #4.- Preparar lo necesario para el select
+                cursor= conx.cursor()
+                sqlSelect="select * from TBRegistrados"
+                
+                #5.- Ejecucuion y guardado de la consulta
+                cursor.execute(sqlSelect)
+                RSu= cursor.fetchall()
+                conx.close()
+                
+                return RSu
+            
+        except sqlite3.OperationalError:
+                print("error Consulta")
