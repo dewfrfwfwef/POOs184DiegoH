@@ -10,6 +10,9 @@ controlador= controladorBD()
 #Proseder a guardar usuario 
 def ejecutarInsert():
     controlador.gardarUsuario(varNom.get(),varCor.get(),varPas.get())
+    print(varNom.get())
+    print(varCor.get())
+    print(varPas.get())
 
 
 #Proseder a Buscar Usuario
@@ -27,6 +30,12 @@ def ejecutaSelectU():
         
     return cadena
 
+#eliminar usuarios
+def eliminarUsu():
+    controlador.Delete(varDel.get())
+    MostrarUsus()
+
+
 #Proseder a mostrar tabla de registros
 def MostrarUsus():
     usus= controlador.consulALL()
@@ -36,6 +45,11 @@ def MostrarUsus():
         
     for usu in usus:
         tree.insert("",END, values=(usu[0],usu[1],usu[2],usu[3]))
+     
+#actualisar usuarios    
+def actualizarUsu():
+    controlador.actualizarUsuario(varCha.get(),varCNom.get(),varCCor.get(),varCPas.get())
+    MostrarUsus()
     
                 
 
@@ -50,6 +64,8 @@ blink1= ttk.Frame(panel)
 blink2= ttk.Frame(panel)
 blink3= ttk.Frame(panel)
 blink4= ttk.Frame(panel)
+blink5= ttk.Frame(panel)
+
 #pestaña1: Formulario
 titulo= Label(blink1,text="Registro Usuarios",fg="blue",font=("Modern",18)).pack()
 
@@ -65,7 +81,7 @@ varPas= tk.StringVar()
 lblPas= Label(blink1,text="contraseña:").pack()
 txtPas= Entry(blink1,textvariable=varPas).pack()
 
-btnGuard= Button(blink1,text="Buscar Usuario",command=ejecutarInsert).pack()
+btnGuard= Button(blink1,text="agregar Usuario",command=ejecutarInsert).pack()
 
 #pestaña2: Buscar Usuario
 titulo2= Label(blink2,text="Registro Usuarios",fg="green",font=("Modern",18)).pack()
@@ -95,12 +111,40 @@ tree.pack(fill="both")
 btnShow= Button(blink3, text="Mostrar",command=MostrarUsus)
 btnShow.pack()
 
-#pestaña4: Formulario
+#pestaña4: Eliminar
+titulo3= Label(blink4,text="Eliminar Usuarios",fg="green",font=("Modern",18)).pack()
 
+varDel= tk.StringVar()
+lblid= Label(blink4,text="identificador de usuario:").pack()
+txtid= Entry(blink4,textvariable=varDel).pack()
+btnDelete= Button(blink4,text="eliminar",command=eliminarUsu).pack()
 
+#pestaña5: actualizar usuarios
+titulo4= Label(blink5,text="Actualizar Usuarios",fg="green",font=("Modern",18)).pack()
+
+varCha= tk.StringVar()
+lblid= Label(blink5,text="identificador de usuario:").pack()
+txtid= Entry(blink5,textvariable=varCha).pack()
+
+varCNom= tk.StringVar()
+lblNom= Label(blink5,text="nombre:").pack()
+txtNom= Entry(blink5,textvariable=varCNom).pack()
+
+varCCor= tk.StringVar()
+lblCor= Label(blink5,text="correo:").pack()
+txtCor= Entry(blink5,textvariable=varCCor).pack()
+
+varCPas= tk.StringVar()
+lblPas= Label(blink5,text="contraseña:").pack()
+txtPas= Entry(blink5,textvariable=varCPas).pack()
+
+btnActualizar= Button(blink5,text="Actualizar",command=actualizarUsu).pack()
+
+#titulos pestañas
 panel.add(blink1,text="formulario de usuarios")
 panel.add(blink2,text="Buscar Usuario")
 panel.add(blink3,text="consultar usuarios")
-panel.add(blink4,text="actualizar usuarios")
+panel.add(blink4,text="eliminar ususario")
+panel.add(blink5,text="actualizar usuarios")
 
 ventana.mainloop()

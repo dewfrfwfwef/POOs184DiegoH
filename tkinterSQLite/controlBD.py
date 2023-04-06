@@ -90,3 +90,47 @@ class controladorBD:
             
         except sqlite3.OperationalError:
                 print("error Consulta")
+                
+    def Delete(self,id):
+        conx= self.conexionBD()
+        if(id == ""):
+            messagebox.showwarning("cuidado","id vacio ingrese un id")
+            conx.close()
+        else:
+            try:
+                cursor= conx.cursor()
+                sqlDelete="delete from TBRegistrados where id=" +id
+                pregunta = messagebox.askokcancel("adevertencia","Desea eliminar el usuario")
+                if pregunta == True:
+                    cursor.execute(sqlDelete)
+                    conx.commit()
+                    conx.close()
+                    messagebox.showinfo("Exito","se elimino el usuario")
+                else:
+                    conx.close()
+                    messagebox.showinfo("Exito","No se elimino el usuario")
+                
+            except sqlite3.OperationalError:
+                print("error Consulta")
+                
+    def actualizarUsuario(self,id,nom,cor,con):
+            
+            conx= self.conexionBD()
+                
+            if(id == "" or nom == "" or cor == "" or con == ""):
+                messagebox.showwarning("cuidadito!!", "falta informacion")
+                conx.close()
+            else:
+                try:
+                    cursor= conx.cursor()
+                    conH=self.encriptarCon(con)
+                    datos=(nom,cor,conH,id)
+                    qrUpdate="update TBRegistrados set nombre=?,correo=?,contra=? where id=?"
+                        
+                    cursor.execute(qrUpdate,datos)
+                    conx.commit()
+                    conx.close()
+                    messagebox.showinfo("Exito"," Se actualizo el usuario")
+                        
+                except sqlite3.OperationalError:
+                    print("error Consulta")
