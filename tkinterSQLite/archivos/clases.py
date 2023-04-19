@@ -59,6 +59,27 @@ class controladorBD:
             
         except sqlite3.OperationalError:
                 print("error Consulta")
+                
+    def actualizarUsuario(self,id,nom,can):
+            
+            conx= self.conexionBD()
+                
+            if(id == "" or nom == "" or can == ""):
+                messagebox.showwarning("cuidadito!!", "falta informacion")
+                conx.close()
+            else:
+                try:
+                    cursor= conx.cursor()
+                    datos=(nom,can,id)
+                    qrUpdate="update MatConstruccion set Material=?,Cantidad=? where IDMat=?"
+                        
+                    cursor.execute(qrUpdate,datos)
+                    conx.commit()
+                    conx.close()
+                    messagebox.showinfo("Exito"," Se actualizo el material")
+                        
+                except sqlite3.OperationalError:
+                    print("error Consulta")
              
              
              

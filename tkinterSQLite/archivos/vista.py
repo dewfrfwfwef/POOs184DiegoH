@@ -19,6 +19,11 @@ def MostrarMATS():
         
     for mat in mats:
         tree.insert("",END, values=(mat[0],mat[1],mat[2]))
+        
+def actualizarMAT():
+    controlador.actualizarUsuario(varCha.get(),varCNom.get(),varCant.get())
+    MostrarMATS()
+    
 
 
 
@@ -62,8 +67,8 @@ tree.pack(fill="both")
 btnShow= Button(blink2, text="Mostrar",command=MostrarMATS)
 btnShow.pack()
 
-#pestaña5: actualizar usuarios
-titulo4= Label(blink3,text="Actualizar materiales",fg="green",font=("Modern",18)).pack()
+#pestaña3: actualizar usuarios
+titulo3= Label(blink3,text="Actualizar materiales",fg="green",font=("Modern",18)).pack()
 
 varCha= tk.StringVar()
 lblid= Label(blink3,text="identificador del material:").pack()
@@ -77,7 +82,7 @@ varCant= tk.StringVar()
 lblCor= Label(blink3,text="cantidad:").pack()
 txtCor= Entry(blink3,textvariable=varCant).pack()
 
-btnActualizar= Button(blink3,text="Actualizar").pack()
+btnActualizar= Button(blink3,text="Actualizar",command=actualizarMAT).pack()
 
 #titulos pestañas
 panel.add(blink1,text="ingresar mats")
